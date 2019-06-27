@@ -1,0 +1,25 @@
+<app-navbar></app-navbar>
+
+<div class="clientHome" [ngStyle]="{'background': 'url(' + clientHomeBackground + ')'}" style="background-size: cover !important;">
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-md-4" *ngFor='let serv of services'>
+        <div class="service" (click)="goToFreelancers(serv.name)">
+            <img src="http://127.0.0.1:8000/serviceIcons/{{serv.serviceIcon}}" alt="{{serv.name}}">
+            <span class="content" *ngIf="lang=='english'">
+                {{ serv.name }}
+            </span>
+
+            <span class="content" *ngIf="lang=='arabic'">
+                {{ serv.nameArabic }}
+            </span>
+
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

@@ -1,0 +1,46 @@
+<div class="login">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8" style="margin: 0; padding: 0;">
+        <form>
+          <h2 *ngIf="lang=='english'">Welcome Back,</h2>
+          <h2 *ngIf="lang=='arabic'">اهلا بك,</h2>
+          <div class="form-group">
+            <input type="email" class="form-control" placeholder="Email" name="email" [(ngModel)]="email" *ngIf="lang=='english'">
+            <input type="email" class="form-control" placeholder="الايميل" name="email" [(ngModel)]="email" *ngIf="lang=='arabic'">
+            <ul class="eror">
+              <li *ngFor='let error of errorEmail'> *{{ error }} </li>
+            </ul>
+          </div>
+          <div class="form-group">
+            <input type="password" placeholder="Password" name="password" [(ngModel)]="password" *ngIf="lang=='english'">
+            <input type="password" placeholder="رقم المرور" name="password" [(ngModel)]="password" *ngIf="lang=='arabic'">
+            <ul class="eror">
+              <li *ngFor='let error of errorPassword'> *{{ error }} </li>
+            </ul>
+          </div>
+          <button type="submit" class="btn btn-primary" (click)="login()" *ngIf="lang=='english'">Login</button>
+          <button type="submit" class="btn btn-primary" (click)="login()" *ngIf="lang=='arabic'">تسجيل الدخول</button>
+        </form>
+      </div>
+      <div class="col-md-4" style="margin: 0; padding: 0">
+        <div class="img" [ngStyle]="{'background': 'url(' + loginPhoto + ')'}">
+            <h3 *ngIf="lang=='english'">New here?</h3>
+            <p *ngIf="lang=='english'">Sign up and discover great amount of new opportunities!</p>
+            <button type="submit" class="btn signup-btn" [routerLink]="['/register']" *ngIf="lang=='english'">Sign Up As Client</button>
+            <button type="submit" class="btn signup-btn" [routerLink]="['/freelancer-register']" *ngIf="lang=='english'">Sign Up As Worker</button>
+
+
+            <h3 *ngIf="lang=='arabic'">غير مسجل؟</h3>
+            <p *ngIf="lang=='arabic'">سجل الان ووفر وقتك</p>
+            <button type="submit" class="btn signup-btn" [routerLink]="['/register']" *ngIf="lang=='arabic'" style="margin-right: 10px;">تسجيل ك عميل</button>
+            <button type="submit" class="btn signup-btn" [routerLink]="['/freelancer-register']" *ngIf="lang=='arabic'">تسجيل ك عامل</button>
+
+
+        </div>
+      </div>
+
+      
+    </div>
+  </div>
+</div>

@@ -1,0 +1,135 @@
+<app-admin-navbar></app-admin-navbar>
+
+<div class="adminServices">
+  <div class="container">
+    
+    <div class="space"></div>
+    <div class="row">
+
+      <div class="col-md-4" *ngFor="let serv of services">
+        <div class="card">
+          <h5 class="card-header">{{ serv.name }}</h5>
+          <img class="card-img-top" src="http://127.0.0.1:8000/serviceIcons/{{ serv.serviceIcon }}" alt="{{ serv.name }}" style="width: 200px; height: 180px;">
+          <div class="card-body">
+
+            <p class="card-text"><strong class="d-inline-block mb-2 text-primary">Description: </strong> {{ serv.description }}</p>
+            
+            <a class="btn btn-primary" (click)="getServiceID(serv.id)" data-toggle="modal" data-target="#exampleModal">Edit</a>
+
+            <a class="btn btn-danger" (click)="deleteService(serv.id)">Delete</a>
+
+          </div>     
+        </div>  
+      </div>
+
+      <div class="col-md-4">
+        <button class="btn btn-success" data-toggle="modal" data-target="#exampleModal2" (click)="beforeInsert()">Insert New Service</button>
+      </div>
+
+
+    </div>
+
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit Service</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="py-5 text-center">
+              <img class="d-block mx-auto mb-4" src="http://127.0.0.1:8000/serviceIcons/{{ serviceIcon }}" alt="" width="250" height="250">
+                <div class="form-group" style="margin: 0px auto; display: inline-block;">
+                  <input type="file"(change)="onFileChange($event)">
+                </div>
+            </div>
+            
+            <form>
+              <div class="form-group">
+                <label for="exampleFormControlTextarea1">Name</label>
+                <input type="text" class="form-control" placeholder="Service Name" name="serviceName" [(ngModel)]="serviceName">
+                <ul class="eror">
+                  <li *ngFor='let error of nameError'> *{{ error }} </li>
+                </ul>
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlTextarea1">Description</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Description" rows="3" name="serviceDescrption" [(ngModel)]="serviceDescrption"></textarea>
+                <ul class="eror">
+                  <li *ngFor='let error of descriptionError'> *{{ error }} </li>
+                </ul>
+              </div>
+            </form>
+            
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="editService()">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Insert New Service</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">    
+              <form>
+                <div class="form-group">
+                  <label for="exampleFormControlTextarea1">Service Name</label>
+                  <input type="text" class="form-control" placeholder="Service Name" name="serviceName" [(ngModel)]="serviceName">
+                  <ul class="eror">
+                    <li *ngFor='let error of nameError'> *{{ error }} </li>
+                  </ul>
+                </div>
+                <div class="form-group">
+                  <label for="exampleFormControlTextarea1">Description</label>
+                  <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Description" rows="3" name="serviceDescrption" [(ngModel)]="serviceDescrption"></textarea>
+                  <ul class="eror">
+                    <li *ngFor='let error of descriptionError'> *{{ error }} </li>
+                  </ul>
+                </div>
+                <div class="form-group" style="margin: 0px auto; display: inline-block;">
+                  <input type="file"(change)="onFileChanges2($event)">
+                </div>
+                <ul class="eror">
+                  <li *ngIf="iconError"> *{{ iconError }} </li>
+                </ul>
+              </form>
+              
+              
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" (click)="addService()">Insert</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+  </div>
+</div>

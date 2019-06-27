@@ -1,0 +1,32 @@
+<app-navbar></app-navbar>
+
+<div class="clientRequests portfolio">
+  <div class="container">
+    <div class="space"></div>
+    <h3 *ngIf="lang=='english'">Update your portfolio to get more clients</h3>
+    <h3 *ngIf="lang=='arabic'">قم بتحديث سابقه الاعمال الخاصه بك للحصول علي عملاء اكثر</h3>
+    <div class="row">
+      
+      <div class="col-md-6" *ngFor="let portfolio of portfolios">
+          <div class="card">
+            <img class="card-img-top" width="100%" height="400px" src="http://127.0.0.1:8000/freelancerPortfolios/{{ portfolio.portfolioImage }}" alt="{{ portfolio.portfolioImage }}">
+            <div class="card-body">
+              <a class="btn btn-danger" style="color: #fff;" (click)="deletePortfolio(portfolio.id)" *ngIf="lang=='english'">Delete</a>
+              <a class="btn btn-danger" style="color: #fff;" (click)="deletePortfolio(portfolio.id)" *ngIf="lang=='arabic'">حذف</a>
+            </div>
+          </div>
+      </div>
+
+      <div class="col-md-3">
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" id="customFile" (change)="onFileChange($event)">
+            <label class="custom-file-label" for="customFile" *ngIf="lang=='english'">Upload Image</label>
+            <label class="custom-file-label" for="customFile" *ngIf="lang=='arabic'">تحميل صوره</label>
+          </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

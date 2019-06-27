@@ -1,0 +1,1186 @@
+body
+{
+    background-color: rgb(239, 239, 239) !important;
+}
+
+.direction
+{
+    direction: rtl !important;
+    text-align: right !important;
+}
+
+.space
+{
+    padding-top: 60px;
+}
+
+.spaceFooter
+{
+    padding-top: 60px;
+    background-color: #f6f6f6  !important;
+}
+/* Start Loading */
+
+.loadingContent {
+    width: 400px;
+    height: 200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      flex: 1;
+  }
+  
+  .loading .title {
+      font-size: 14px;
+      color:  #A5ADBA;
+      margin-bottom: 20px;
+      transition: 1s all ease-out;
+      animation-name: loading-text;
+      animation-duration: 2s;
+      animation-iteration-count: infinite;
+  }
+  
+  .loading-bar {
+      width: 100%;
+      height: 3px;
+      background: #EBECF0;
+      position: relative;
+      overflow: hidden;
+  }
+  
+  .bar-animation {
+      width: 50%;
+      height: 3px;
+      background: #0055D5;
+      position: absolute;
+      transition: 1s all ease-out;
+      animation-name: loading-interminate;
+      animation-duration: 2s;
+      animation-iteration-count: infinite;
+  }
+  
+  @keyframes loading-interminate {
+    0% {
+      left: 0;
+      width: 0;
+    }
+    
+    50% {
+      left: 10%;
+    }
+    
+    70% {
+      left: 60%;
+    }
+    
+    100% {
+      left: 100%;
+      right: 0;
+    }
+  }
+  
+  @keyframes loading-text {
+    to {
+      opacity: .5;
+    }
+    
+    from {
+      opacity: 10;
+    }
+  }
+
+/* End Loading */
+
+
+
+/* Start Navbar */
+.navbar-light .navbar-nav .active>.nav-link, 
+.navbar-light .navbar-nav .nav-link.active, 
+.navbar-light .navbar-nav .nav-link.show, 
+.navbar-light .navbar-nav .show>.nav-link, 
+.navbar-light .navbar-nav .nav-link, 
+.navbar-light .navbar-nav .active,
+.navbar-light .navbar-nav .nav-link:focus,
+.navbar-light .navbar-nav .nav-link:hover
+{
+    color: #bebebe;
+    font-size: 17px;
+}
+.navbar-light .navbar-nav .nav-item
+{
+    padding: 13px 12px;
+    transition: all 0.3s ease-in-out;
+}
+.navbar-light .navbar-nav .nav-item:hover .nav-link
+{
+    color: #F8B12A;  
+}
+.hvr-underline-from-left:before
+{
+    background-color: #F8B12A !important;
+}
+.bg-dark
+{
+    background-color: #0f0f0f !important;
+    padding: 0;
+    margin: 0;
+}
+
+.navbar-light .navbar-brand img
+{
+    width: 18%;
+    margin-top: -10px;
+}
+
+.navbar-light .navbar-brand span
+{
+    margin-left: 20px;
+    font-weight: bold;
+    font-size: 35px;
+    color: #F8B12A;
+}
+.navbar-toggler
+{
+    background-color: #eeaa29;
+}
+.dropdown-menu i
+{
+    color: #6c757d;
+}
+.dropdown-item
+{
+    cursor: pointer;
+}
+@media (max-width: 576px)
+{
+    .navbar-light .navbar-brand
+    {
+        width: 60%;
+        margin-left: 20px;
+        font-size: 15px;
+    }
+    .navbar-light .navbar-brand span
+    {
+        font-size: 29px;
+    }
+    .navbar-toggler
+    {
+        margin-right: 20px;
+        cursor: pointer;
+    }
+}
+/* End Navbar */
+
+
+
+/* Start Slider */
+.carousel-item .content
+{
+    background-size: cover !important;
+    background-blend-mode: overlay;
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    font-family: Tahoma, Geneva, sans-serif;
+    min-height: 91vh;
+}
+
+.carousel-item .content h2
+{    
+    padding-top: 20%;
+    font-size: 45px;
+    color: #EEAA01;
+    font-weight: bold;
+}
+.carousel-item .content p
+{    
+    font-size: 31px;
+    color: #cacacae0;
+    font-weight: bold;
+    width: 65%;
+}
+
+/* End Slider */
+
+
+/* Start About */
+.about
+{
+    padding: 60px 0px;
+    text-align: center;
+    background-color: #fff;
+}
+.about h2
+{
+    color: #F8B12A
+}
+.about h2:after
+{
+    content: "";
+    background-color: #F8B12A;
+    width: 45px;
+    height: 3px;
+    display: block;
+    margin: auto;
+    margin-top: 10px;
+}
+.about p
+{
+    width: 75%;
+    margin: auto;
+    color: #5d5d5d;
+    line-height: 1.5;
+    margin-top: 30px;
+    font-size: 17px;
+}
+/* End About */
+
+
+
+/* Start Services */
+.services
+{
+    padding: 60px 0px 30px 0px;
+    background-color: #e6e6e6;
+}
+.services h2
+{
+    color: #F8B12A;
+    margin-bottom: 100px;
+}
+.services h2:after
+{
+    content: "";
+    background-color: #F8B12A;
+    width: 45px;
+    height: 3px;
+    display: block;
+    margin: auto;
+    margin-top: 10px;
+}
+.services .content
+{
+    padding-left: 40px;
+    margin-top: -26px;
+    margin-bottom: 75px;
+}
+.services .content h3
+{
+    color: rgb(241, 168, 31);
+    margin-bottom: 20px;
+}
+.services .content h3:after
+{
+    content: "";
+    background-color: #F8B12A;
+    width: 35px;
+    height: 3px;
+    display: block;
+    margin-top: 10px;
+}
+.services .content p
+{
+    line-height: 1.5;
+    color: #515151;
+    font-size: 17px;
+}
+.services img
+{
+    width: 223px;
+    height: 203px;
+}
+/* End Services */
+
+
+/* Start whyBrngi */
+.whyBrngi
+{
+    padding: 60px 0px;
+    text-align: center;
+    background-color: #fff;
+}
+.whyBrngi h2
+{
+    color: #F8B12A;
+    margin-bottom: 60px;
+}
+.whyBrngi h2::after
+{
+    content: "";
+    background-color: #F8B12A;
+    width: 35px;
+    height: 3px;
+    display: block;
+    margin: auto;
+    margin-top: 10px;
+}
+.whyBrngi h3,
+.whyBrngi h4
+{
+    color: #F8B12A;
+    margin-top: -20px;
+    margin-bottom: 15px;
+}
+.whyBrngi p
+{
+    line-height: 1.5;
+    color: #5d5d5d;
+    width: 85%;
+    margin: auto;
+}
+.whyBrngi .upper
+{
+    margin-top: -50px;
+}
+.whyBrngi img
+{
+    width: 200px;
+    height: 180px;
+}
+@media (max-width: 576px)
+{
+    .whyBrngi .upper
+    {
+        margin-top: 0px;
+    }
+}
+
+/* End whyBrngi */
+
+
+/* Start BePartner */
+.bePartner
+{
+    padding: 40px 0px;
+    background-color: #e6e6e6;
+}
+.bePartner h2
+{
+    color: #F8B12A;
+}
+.bePartner h2::after
+{
+    content: "";
+    background-color: #F8B12A;
+    width: 85px;
+    height: 3px;
+    display: block;
+    margin-top: 10px;
+}
+.bePartner span
+{
+    margin-top: -24px;
+    margin-left: 95px;
+    position: absolute;
+    color: #2e2e2e;
+}
+.bePartner .earnMoneyButton
+{
+    margin-top: 10px;
+    font-size: 18px;
+    background-color: #F8B12A;
+    color: #fff;
+    border: 2px solid #F8B12A;
+    font-weight: bold;
+    padding: 12px 28px;
+    transition: all 0.5s ease-in-out;
+}
+.bePartner .earnMoneyButton:hover
+{
+    background-color: #fff;
+    border: 2px solid #F8B12A;
+    color: #F8B12A;
+}
+/* End BePartner */
+
+
+/* Start Footer */
+.footer
+{ 
+    padding: 8px 0px;
+    background-color: #0f0f0f;
+    text-align: center;
+}
+.footer ul
+{
+    list-style-type: none;
+    margin: auto;
+    margin-top: 0px;
+}
+.footer ul li
+{
+    display: inline-block;
+    font-size: 15px;
+    margin: auto;
+    margin-right: 25px;
+    cursor: pointer;
+}
+.footer ul li a
+{
+    text-decoration: none;
+    color: #F8B12A;
+}
+.footer ul li a:hover
+{
+    color: rgb(228, 149, 3)
+}
+.footer span
+{
+    color: #5d5d5d;
+    padding-top: 0px;
+    font-size: 14px;
+}
+.footer .nav-link
+{
+    padding: 0px;
+}
+/* End Footer */
+
+
+
+/* Start Login */
+.login
+{
+    width: 100%;
+    margin-top: 12vh;
+    margin-bottom: 0px;
+    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+}
+.login form
+{
+    background-color: #fff;
+    padding: 40px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    padding-top: 80px;
+    padding-bottom: 120px;
+}
+.login form input, .login form button
+{
+    width:60%;
+    display: block;
+    margin: 0 auto;
+}
+.login form button
+{
+    width: 35%;
+    border-radius: 25px;
+    background-color: #F8B12A;
+    border: 2px solid #F8B12A;
+    margin-top: 50px;
+    font-size: 19px;
+    font-weight: 500;
+    transition: all 0.4s ease-in-out;
+}
+.login form button:hover
+{
+    color: #F8B12A;
+    background-color: transparent;
+    border: 2px solid #F8B12A;
+    font-weight: 500;
+}
+.login form input
+{
+    border: 0;
+    border-radius: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    text-align: center;
+    padding: 15px;
+    margin-bottom: 8px;
+}
+.login form .form-group
+{
+    margin: 55px auto;
+}
+.login ::-webkit-input-placeholder
+{
+    color: #cfcfcf;
+}
+.login form h2
+{
+    margin-bottom: 60px;
+    text-align: center;
+    color: #4d4d4d;
+}
+
+.login .img
+{
+    width: 100%;
+    height: 100%;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background-size: cover !important;
+    background-position: right top !important;
+    background-color: rgba(0, 0, 0, 0.4) !important;
+    background-blend-mode: overlay !important;
+    color: #fff;
+    text-align: center;
+}
+.login .img h3
+{
+    padding-top: 180px;
+}
+.login .img p
+{
+    width: 60%;
+    margin: 15px auto;
+}
+.login .img .signup-btn
+{
+    border: 2px solid #fff;
+    border-radius: 25px;
+    padding: 6px 25px;
+    color: #fff;
+    background-color: transparent !important;
+    margin-top: 40px;
+    font-weight: 700;
+    transition: all 0.4s ease-in-out;
+}
+.login .img .signup-btn:hover
+{
+    background-color: #F8B12A !important;
+    border: 2px solid #F8B12A;
+}
+.eror li
+{
+    color: red;
+    list-style-type: none;
+    text-align: center;
+}
+@media (max-width: 768px) 
+{
+    .login form
+    {
+        border-radius: 0 !important;
+    }
+    .login .img
+    {
+        border-radius: 0 !important;
+    }
+    .login .img h3
+    {
+        padding-top: 20px !important;
+    }
+    .login .img button
+    {
+        margin-top: 20px !important;
+        margin-bottom: 40px !important;
+        margin-left: 20px;
+    }
+}
+/* End Login */
+
+/* Start Sign Up */
+.signUp.login
+{
+    margin-top: 12vh;
+}
+.signUp form
+{
+    border-radius: 0;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding-bottom: 50px;
+    padding-top: 40px;
+}
+.signUp form h2
+{
+    margin-bottom: 0px;
+}
+.signUp form input
+{
+    width: 90%;
+    text-align: left;
+    margin-bottom: 8px;
+}
+.signUp form .form-group
+{
+    margin: 40px auto;
+    margin-bottom: 20px;
+}
+.signUp .img
+{
+    background-position: left top !important;
+    border-radius: 0;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+.signUp form label
+{
+    margin-left: 25px;
+    color: #cfcfcf;
+}
+.signUp form .btn-info
+{
+    margin: 0px;
+    margin-left: 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    padding: 2px 3px;
+    background-color: #6c757d !important;
+    border: 2px solid #6c757d;
+    transition: all 0.1s ease-in-out;
+}
+.signUp form .btn-info:hover
+{
+    background-color: #5a6268 !important;
+    border-color: #545b62;
+    color: #fff;
+}
+.signUp form .btn-primary
+{
+    margin-top: 10px;
+}
+.signUp form ul li
+{
+    color: red;
+    list-style-type: none;
+}
+/* End Sign Up */
+
+/* Start Client Home */
+.clientHome
+{
+    background-size: cover;
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    background-blend-mode: overlay !important;
+    min-height: 81.8vh;
+}
+.clientHome .service
+{
+    margin: 50px auto 10px;
+    background-color: #e9e9e9 !important;
+    border-bottom-left-radius: 40px;
+    border-top-right-radius: 40px;
+    cursor: pointer;
+}
+.clientHome .service img
+{
+    width: 30%;
+    border-bottom-left-radius: 40px;
+    border-top-right-radius: 40px;
+    background-color: #fff !important;
+}
+
+.clientHome .service .content
+{
+    font-size: 27px;
+    font-weight: 500;
+    text-align: center;
+    margin-left: 0px;
+    vertical-align: middle;
+}
+
+@media (min-width: 768px) and (max-width: 1199.98px)
+{
+    .clientHome .service .content
+    {
+        font-size: 17px;
+        margin-left: 0px;
+    }
+} 
+
+/* End Client Home */
+
+
+/* Start Available Freelancers */
+.availableFreelancers
+{
+    background-color: #fff !important;
+    min-height: 100vh;
+}
+.availableFreelancers h3
+{
+    text-align: center;
+    color: #F8B12A;
+    padding-top: 60px;
+    padding-bottom: 30px;   
+}
+
+.availableFreelancers h3::after
+{
+    content: "";
+    width: 80px;
+    height: 3px;
+    background-color: #F8B12A !important;
+    display: block;
+    margin: 20px auto;
+}
+.availableFreelancers button
+{
+    margin-top: 15px;
+}
+.availableFreelancers .btn-primary
+{
+    background-color: #F8B12A !important;
+    border: 2px solid #F8B12A;
+    color: #fff;
+}
+.availableFreelancers .btn-primary:hover
+{
+    background-color: transparent !important;
+    color: #F8B12A;
+}
+.availableFreelancers .btn-secondary
+{
+    border: 2px solid #6c757d;
+}
+.availableFreelancers .btn-secondary:hover
+{
+    background-color: transparent !important;
+    border: 2px solid #6c757d;
+    color: #6c757d;
+}
+.availableFreelancers .card-header
+{
+    margin-bottom: 40px;
+    border-radius: 10px;
+}
+.availableFreelancers .card-header .nav-link
+{
+    cursor: pointer;
+}
+.availableFreelancers .empty
+{
+    text-align: center;
+    font-size: 35px;
+    color: #acacac
+}
+/* End Available Freelancers */
+
+
+/* Start Client Profile */
+.clientProfile
+{
+    background-color: #f6f6f6 !important;
+}
+.clientProfile img
+{
+    border-radius: 50%;
+    border: 2px solid #6c757d;
+    padding: 6px;
+}
+
+.clientProfile .btn-primary
+{
+    background-color: #F8B12A !important;
+    border: 2px solid #F8B12A;
+    color: #fff;
+}
+.clientProfile .btn-primary:hover
+{
+    background-color: transparent !important;
+    color: #F8B12A;
+}
+.clientProfile .card-body strong
+{
+    color: #F8B12A;
+}
+.clientProfile .card-body h3
+{
+    color: #F8B12A;
+    margin: 40px auto;
+    text-align: center;
+}
+.clientProfile .card-body h3::after
+{
+    content: "";
+    display: block;
+    width: 30px;
+    height: 3px;
+    background-color: #F8B12A !important;
+    margin: 5px auto;
+}
+.clientProfile .errors
+{
+    color: red;
+    list-style-type: none;
+}
+.clientProfile .empty
+{
+    text-align: center;
+    font-size: 35px;
+    color: #acacac
+}
+/* End Client Profile */
+
+/* Start Client Request */
+.clientRequests
+{
+    background-color: #fff !important;
+    min-height: 100vh;
+}
+.clientRequests .card-header
+{
+    margin-bottom: 40px;
+    border-radius: 10px;
+}
+.clientRequests .card-header .nav-link
+{
+    cursor: pointer;
+}
+
+
+.clientRequests .card
+{
+    margin-bottom: 40px;
+}
+.clientRequests .card-img-top
+{
+    display: block;
+    margin: auto;
+}
+.clientRequests .empty
+{
+    text-align: center;
+    font-size: 35px;
+    color: #acacac
+}
+.clientRequests .rateStar
+{
+    margin-left: 135px;
+}
+.clientRequests .rateStar i
+{
+    margin: 3px;
+    color: #cfcfcf;
+    text-align: center;
+    font-size: 25px;
+    cursor: pointer;
+}
+.rateStar:not(:checked) > i:hover,
+.rateStar:not(:checked) > i:hover ~ i {
+    color: #F8B12A;  
+}
+.clientRequests .form-group ul li
+{
+    color: red;
+    list-style-type: none;
+}
+/* End Client Request */
+
+
+/* Start Freelancer Sign Up */
+.freelancerSignUp.signUp.login
+{
+    margin-top: 9vh;
+}
+/* End Freelancer Sign Up */
+
+/* Start Freelancer Home */
+.freelancerHome h3
+{
+    text-align: center;
+    color: #F8B12A;
+    padding-bottom: 30px;   
+}
+
+.freelancerHome h3::after
+{
+    content: "";
+    width: 60px;
+    height: 3px;
+    background-color: #F8B12A !important;
+    display: block;
+    margin: 20px auto;
+}
+.freelancerHome.clientRequests .card-header
+{
+    border-radius: 0px;
+    margin-bottom: 0px;
+}
+.freelancerHome.clientRequests .card
+{
+    margin-bottom: 40px;
+}
+.freelancerHome .hed
+{
+    margin-bottom: 40px !important;
+}
+.freelancerHome.clientRequests .card-body a
+{
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+.freelancerHome agm-map
+{
+    height: 200px;
+}
+/* End Freelancer Home */
+
+/* Start Portfolio */
+.portfolio
+{
+    min-width: 100vh;
+    background-color: #fff !important;
+}
+.portfolio h3
+{
+    text-align: center;
+    color: #F8B12A;
+    padding-bottom: 30px;   
+}
+
+.portfolio h3::after
+{
+    content: "";
+    width: 60px;
+    height: 3px;
+    background-color: #F8B12A !important;
+    display: block;
+    margin: 20px auto;
+}
+.portfolio .custom-file
+{
+    margin-bottom: 20px;
+}
+/* End Portfolio */
+
+/* Start View Freelancer */
+.viewFreelancer agm-map
+{
+    height: 250px;
+    z-index: 500;
+}
+.viewFreelancer.clientProfile .card img
+{
+    border-radius: 15px;
+    border: 0;
+    padding: 0px;
+}
+.viewFreelancer.clientProfile .card
+{
+    margin: 15px 5px;
+    border-radius: 15px;
+}
+/* End View Freelancer */
+
+/* Start Login Admin */
+.loginAdmin
+{
+    display: flex;
+    align-items: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #f5f5f5;
+    min-height: 100vh;
+}
+.loginAdmin .form-signin
+{
+    width: 100%;
+    max-width: 400px;
+    padding: 15px;
+    margin: auto;
+}
+.loginAdmin .form-signin .form-control
+{
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+.loginAdmin .eror li
+{
+    text-align: left;
+    margin-top: 0px;
+    padding-top: 0px;
+}
+/* End Login Admin */
+
+/* Start Admin Navbar */
+.adminNavbar .navbar
+{
+    padding: 5px;
+}
+.adminNavbar .navbar-light .navbar-nav .active>.nav-link,
+.adminNavbar .navbar-light .navbar-nav .nav-link.active,
+.adminNavbar .navbar-light .navbar-nav .nav-link.show,
+.adminNavbar .navbar-light .navbar-nav .show>.nav-link,
+.adminNavbar .navbar-light .navbar-nav .nav-link,
+.adminNavbar .navbar-light .navbar-nav .active,
+.adminNavbar .navbar-light .navbar-nav .nav-link:focus,
+.adminNavbar .navbar-light .navbar-nav .nav-link:hover
+{
+    color: #2e2e2e;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.adminNavbar .navbar-light .navbar-nav .nav-link:hover,
+.adminNavbar .navbar-light .navbar-nav .nav-item:hover .nav-link
+{
+    color: #6c757d;
+}
+.adminNavbar .navbar-toggler
+{
+    background-color: transparent !important;
+}
+/* End Admin Navbar */
+
+/* Start Admin Home */
+.adminHome
+{
+    min-height: 100vh;
+    background-color: #fff !important;
+}
+.adminHome h3
+{
+    text-align: center;
+    color: #5d5d5d;
+    padding-top: 60px;
+    padding-bottom: 30px;   
+}
+
+.adminHome h3::after
+{
+    content: "";
+    width: 60px;
+    height: 3px;
+    background-color: #5d5d5d !important;
+    display: block;
+    margin: 20px auto;
+}
+
+.adminHome img
+{
+    margin-left: auto;
+    margin-right: auto;
+}
+.adminHome .row > div:not(:nth-of-type(2))
+{
+    margin-top: 40px;
+}
+.adminHome .mrTop
+{
+    margin-top: -30px;
+}
+@media(max-width:765px)
+{
+    .adminHome .row > div:nth-of-type(2)
+    {
+        margin-top: 70px;
+    }
+    .adminHome .mrTop
+    {
+        margin-top: -50px !important;
+    }
+}
+.adminHome .row div img
+{
+    border-radius: 15%;
+    padding: 5px;
+    display: block;
+    margin: auto;
+}
+
+
+.animation {
+    perspective: 600px;
+}
+
+.animation .content
+{
+    width: 80%;
+    margin: auto;
+    padding: 15px 30px;
+    border-radius: 10%;
+    background-color: black;
+    transition: all 0.5s ease-in-out
+}
+
+.animation:hover .content
+{
+	transform-origin:top;
+	animation:swinging 1.8s 1 alternate ease-in-out;
+}
+
+@keyframes swinging
+{
+	0%
+	{
+		transform:rotateX(-20deg);
+	}
+	20%
+	{
+		transform:rotateX(20deg);
+	}
+	40%
+	{
+		transform:rotateX(-30deg);
+	}
+	60%
+	{
+		transform:rotateX(30deg);
+	}
+	80%
+	{
+		transform:rotateX(-30deg);
+	}
+	100%
+	{
+		transform:rotateX(0deg);
+	}
+
+}
+
+.animation .content h4
+{
+    color: #fff;
+}
+
+.animation .content span
+{
+    color: #c3c3c3;
+}
+/* End Admin Home */
+
+
+/* Start Admin Services */
+.adminServices
+{
+    min-height: 100vh;
+    background-color: #fff !important;
+}
+.adminServices .card-img-top
+{
+    display: block;
+    margin: auto;
+}
+.adminServices .card
+{
+    margin-bottom: 30px;
+}
+.adminServices .card .btn
+{
+    color: #fff;
+    margin-right: 20px;
+}
+.adminServices .eror li
+{
+    text-align: left;
+    margin-top: 0px;
+    padding-top: 0px;
+}
+.adminServices .pb-5,
+.adminServices  .py-5
+{
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}
+/* End Admin Services */
+
+/* Start Admin Reions */
+.adminRegions
+{
+    min-height: 100vh;
+    background-color: #fff !important;
+}
+/* End Admin Regions */

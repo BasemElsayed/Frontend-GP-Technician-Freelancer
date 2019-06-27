@@ -1,0 +1,49 @@
+<div class="whyBrngi">
+  <div class="container">
+    <h2 *ngIf="lang=='english'">Why Brngi?</h2>
+    <h2 *ngIf="lang=='arabic'">لماذا برنجي؟</h2>
+    <div class="row">
+      <div class="col-md-4">
+        <img src="src\assets\images\time.png" alt="time icon">
+        <h4 *ngIf="lang=='english'">Save Your Time</h4>
+        <p *ngIf="lang=='english'">
+            Saving time and effort instead of searching the whole region
+        </p>
+
+        <h4 *ngIf="lang=='arabic'">وفر وقتك</h4>
+        <p *ngIf="lang=='arabic'">
+            توفير الوقت والجهد بدلاً من البحث في المنطقة بأكملها
+        </p>
+
+      </div>
+      <div class="col-md-4">
+          <div class="upper">
+            <img src="src\assets\images\Quality.png" alt="Quality icon">
+            <h3 *ngIf="lang=='english'">Choose Your Quality</h3>
+            <p *ngIf="lang=='english'">
+                Choose workers based on their portfolio and rating system, Freely review and rate the finished works.
+            </p>
+
+            <h3 *ngIf="lang=='arabic'">جودات مختلفه</h3>
+            <p *ngIf="lang=='arabic'">
+                اختيار العمال على أساس نظامهم محفظة والتصنيف ، ومراجعة بحرية وتقييم الأعمال النهائية.
+            </p>
+
+          </div>
+        </div>
+        <div class="col-md-4">
+          <img src="src\assets\images\servic.png" alt="service icon">
+            <h4 *ngIf="lang=='english'">Earn Money</h4>
+            <p *ngIf="lang=='english'">
+                A new way to earn money, Workers choose the work requests from clients freely according to their availability, with no stress or pressure and the type of work.
+            </p>
+
+            <h4 *ngIf="lang=='arabic'">زود دخلك</h4>
+            <p *ngIf="lang=='arabic'">
+                طريقة جديدة لكسب المال ، يختار العمال طلبات العمل من العملاء بحرية حسب توفرهم ، دون أي ضغوط أو ضغوط ونوع العمل.
+            </p>
+
+          </div>
+    </div>
+  </div>
+</div>

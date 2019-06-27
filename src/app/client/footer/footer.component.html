@@ -1,0 +1,32 @@
+<div class="footer">
+  <div class="container">
+    <ul>
+        <li *ngIf="typeOfUser==0">
+            <a [routerLink]="['/home']" *ngIf="lang=='english'">Home</a>
+            <a [routerLink]="['/home']" *ngIf="lang=='arabic'">الصفحه الرئيسيه</a>
+        </li>
+        <li *ngIf="typeOfUser==1">
+          <a [routerLink]="['/client-home']" *ngIf="lang=='english'">Home</a>
+          <a [routerLink]="['/client-home']" *ngIf="lang=='arabic'">الصفحه الرئيسيه</a>
+        </li>
+        <li *ngIf="typeOfUser==1">
+          <a class="nav-link" [routerLink]="['/client-requests']" *ngIf="lang=='english'">Requests</a>
+          <a class="nav-link" [routerLink]="['/client-requests']" *ngIf="lang=='arabic'">الطلبات</a>
+        </li>
+        <li *ngIf="typeOfUser==2">
+          <a [routerLink]="['/freelancer-home']" *ngIf="lang=='english'">Home</a>
+          <a [routerLink]="['/freelancer-home']" *ngIf="lang=='arabic'">الصفحه الرئيسيه</a>
+        </li>
+        <li *ngIf="typeOfUser==2">
+          <a [routerLink]="['/portfolio']" *ngIf="lang=='english'">Portfolio</a>
+          <a [routerLink]="['/portfolio']" *ngIf="lang=='arabic'">سابقه الاعمال</a>
+        </li>
+        <li *ngIf="typeOfUser==0">
+          <a [routerLink]="['/login']" *ngIf="lang=='english'">Login</a>
+          <a [routerLink]="['/login']" *ngIf="lang=='arabic'">تسجيل الدخول</a>
+        </li>
+    </ul>
+    <span *ngIf="lang=='english'">All Rights &copy; reserved</span>
+    <span *ngIf="lang=='arabic'">جميع الحقوق &copy; محفوظه</span>
+  </div>
+</div>

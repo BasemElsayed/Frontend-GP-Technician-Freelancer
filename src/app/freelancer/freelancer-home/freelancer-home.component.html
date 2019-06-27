@@ -1,0 +1,256 @@
+<app-navbar></app-navbar>
+
+<div class="clientRequests freelancerHome">
+  <div class="space"></div>
+
+  <h3 *ngIf="lang=='english'">Find Your Client`s Requests</h3>
+  <h3 *ngIf="lang=='arabic'">طلبات العملاء</h3>
+
+  <div class="container" *ngIf="!limitNumberOfWorks>0">
+      <div class="alert alert-danger" role="alert" *ngIf="lang=='english'">
+        You should finish some jobs to get requests from clients
+      </div>
+      <div class="alert alert-danger" role="alert" *ngIf="lang=='arabic'">
+          لقد تخطيت ال 30 طلب يجب عليك انهاء بعض الاعمال
+        </div>
+  </div>
+
+  <div class="container" *ngIf="loadingFirst==false && allowedByAdmin == 0">
+    <div class="alert alert-danger" role="alert" *ngIf="allowedByAdmin==0 && lang=='english'">
+      Account not verifying by admin yet, <strong>Please wait our call very soon </strong>  <i class="far fa-grin-beam"></i>
+    </div>
+
+    <div class="alert alert-danger" role="alert" *ngIf="allowedByAdmin==0 && lang=='arabic'">
+        الحساب غير مفعل, <strong>برجاء انتظار مكالمه للتاكد من هويتك </strong>  <i class="far fa-grin-beam"></i>
+      </div>
+
+    <div class="loadingContent" *ngIf="loadingFirst">
+      <div class="loading">
+        <div class="loading-bar">
+          <span class="bar-animation"></span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  
+  <div class="container" *ngIf="allowedByAdmin==1 && allowedToRequest==1">
+
+      <div class="card-header hed" [ngClass]="{'direction': lang=='arabic'}">
+          <ul class="nav nav-tabs card-header-tabs">
+            
+            <li class="nav-item" *ngIf="limitNumberOfWorks>0">
+              <a class="nav-link" [ngClass]="{'active': searchfirst==3}" (click)="getWaitingRequests()" *ngIf="lang=='english'">Clients Requests</a>
+              <a class="nav-link" [ngClass]="{'active': searchfirst==3}" (click)="getWaitingRequests()" *ngIf="lang=='arabic'">طلبات العملاء</a>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link" [ngClass]="{'active': searchfirst==1}" (click)="getUnfinishedRequests()" *ngIf="lang=='english'">Accepted Requests</a>
+              <a class="nav-link" [ngClass]="{'active': searchfirst==1}" (click)="getUnfinishedRequests()" *ngIf="lang=='arabic'">الطلبات المقبوله</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [ngClass]="{'active': searchfirst==2}" (click)="getFinishedRequests()" *ngIf="lang=='english'">Finished Requests</a>
+              <a class="nav-link" [ngClass]="{'active': searchfirst==2}" (click)="getFinishedRequests()" *ngIf="lang=='arabic'">الطلبات المكتمله</a>
+            </li>        
+              
+            
+          </ul>
+        </div>
+
+        <div class="loadingContent" *ngIf="!requstsLength">
+          <div class="loading">
+            <div class="loading-bar">
+              <span class="bar-animation"></span>
+            </div>
+          </div>
+        </div>
+        
+        <p class="empty" *ngIf="empty && lang=='english'">There is nothing to show.</p>
+        <p class="empty" *ngIf="empty && lang=='arabic'">لا يوجد شئ لعرضه</p>
+
+        <div class="row" [ngClass]="{'direction': lang=='arabic'}">
+          <div class="col-md-4" *ngFor="let requst of finishedRequests">
+
+            <div class="card">
+              <h5 class="card-header" *ngIf="lang=='english'"><strong class="d-inline-block mb-2 text-primary" >Client Total Rate {{requst.totalRate.toFixed(1)}} <i class="fas fa-star"></i></strong></h5>
+              <h5 class="card-header" *ngIf="lang=='arabic'"><strong class="d-inline-block mb-2 text-primary" >مجموع تقييمات العميل {{requst.totalRate.toFixed(1)}} <i class="fas fa-star"></i></strong></h5>
+
+              <agm-map class="card-img-top" *ngIf="requst.xCordinate && requst.yCordinate" [latitude]="requst.xCordinate" [longitude]="requst.yCordinate" [zoom]="15">
+                <agm-marker [latitude]="requst.xCordinate" [longitude]="requst.yCordinate"></agm-marker>
+              </agm-map>
+              
+              <div class="card-body">
+                <h5 class="card-title" *ngIf="lang=='english'"><strong class="d-inline-block mb-2 text-primary">Client Name <i class="fas fa-user-cog"></i> :</strong> {{ requst.name }} </h5>
+                
+                <p class="card-text" *ngIf="lang=='english'"><strong class="d-inline-block mb-2 text-primary">Client Contact <i class="fas fa-phone-volume"></i> :</strong> {{ requst.mobileNumber }}</p>
+
+                <p class="card-text" *ngIf="lang=='english'"><strong class="d-inline-block mb-2 text-primary">Client Address <i class="fas fa-map"></i> :</strong> {{ requst.address }}</p>
+
+                <p class="card-text" *ngIf="requst.freelancerRate && lang=='english'"><strong class="d-inline-block mb-2 text-primary">Request Rate :</strong> {{ requst.freelancerRate }} <strong class="d-inline-block mb-2 text-primary"> <i class="fas fa-star"></i> </strong></p>
+
+
+                <h5 class="card-title" *ngIf="lang=='arabic'"><strong class="d-inline-block mb-2 text-primary">اسم العميل <i class="fas fa-user-cog"></i> :</strong> {{ requst.name }} </h5>
+                
+                <p class="card-text" *ngIf="lang=='arabic'"><strong class="d-inline-block mb-2 text-primary">رقم العميل <i class="fas fa-phone-volume"></i> :</strong> {{ requst.mobileNumber }}</p>
+
+                <p class="card-text" *ngIf="lang=='arabic'"><strong class="d-inline-block mb-2 text-primary">المدينه <i class="fas fa-map"></i> :</strong> {{ requst.address }}</p>
+
+                <p class="card-text" *ngIf="requst.freelancerRate && lang=='arabic'"><strong class="d-inline-block mb-2 text-primary">تقييمك :</strong> {{ requst.freelancerRate }} <strong class="d-inline-block mb-2 text-primary"> <i class="fas fa-star"></i> </strong></p>
+
+
+
+
+
+
+                <a class="btn btn-info" style="color: #fff;" *ngIf="(searchfirst==3 || searchfirst==2) && lang=='english'" [routerLink]="['/view-client']" (click)="getClientID(requst.client_id)">View Profile</a>
+
+                <a class="btn btn-info" style="color: #fff;" *ngIf="(searchfirst==3 || searchfirst==2) && lang=='arabic'" [routerLink]="['/view-client']" (click)="getClientID(requst.client_id)">الصفحه الشخصيه</a>
+
+                <br>
+                <a class="btn btn-success" style="color: #fff;" *ngIf="searchfirst==3 && lang=='english'" (click)="acceptRequest(requst.id)">Accept</a>
+                <a class="btn btn-success" style="color: #fff;" *ngIf="searchfirst==3 && lang=='arabic'" (click)="acceptRequest(requst.id)">قبول الطلب</a>
+
+                <a class="btn btn-danger" style="color: #fff;" *ngIf="searchfirst==3 && lang=='english'" (click)="cancelRequest(requst.id)">Cancel</a>
+                <a class="btn btn-danger" style="color: #fff;" *ngIf="searchfirst==3 && lang=='arabic'" (click)="cancelRequest(requst.id)">رفض</a>
+
+                <a class="btn btn-success" style="color: #fff;" *ngIf="searchfirst==1 && lang=='english'" (click)="finishRequest(requst.id)">Finish Job</a>
+                <a class="btn btn-success" style="color: #fff;" *ngIf="searchfirst==1 && lang=='arabic'" (click)="finishRequest(requst.id)">انهاء العمل</a>
+
+                <a class="btn btn-info" style="color: #fff;" *ngIf="searchfirst==1 && xCordinate && yCordinate && lang=='english'" (click)="getClientPoints(requst.xCordinate, requst.yCordinate)">Start Navigation</a>
+
+                <a class="btn btn-info" style="color: #fff;" *ngIf="searchfirst==1 && xCordinate && yCordinate && lang=='arabic'" (click)="getClientPoints(requst.xCordinate, requst.yCordinate)">عرض المكان علي الخريطه</a>
+                
+                <div class="alert alert-warning" role="alert" *ngIf="searchfirst==1 && !xCordinate && yCordinate && lang=='english'">
+                  Allow GPS to access your location to start navigation to client, <strong style="cursor: pointer;" [routerLink]="['/freelancer-profile']">go to profile</strong>
+                </div>
+
+                <div class="alert alert-warning" role="alert" *ngIf="searchfirst==1 && !xCordinate && yCordinate && lang=='arabic'">
+                    يجب عليك السماح بخاصيه تحديد المواقع اولا, <strong style="cursor: pointer;" [routerLink]="['/freelancer-profile']">الصفحه الشخصيه</strong>
+                  </div>
+
+
+              </div>
+          
+            </div>
+                   
+          </div>
+        </div> 
+
+  </div>
+
+
+
+
+  <div class="container" *ngIf="allowedByAdmin==1 && allowedToRequest==0">
+
+      <div class="loadingContent" *ngIf="!requstsLength">
+        <div class="loading">
+          <div class="loading-bar">
+            <span class="bar-animation"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" [ngClass]="{'direction': lang=='arabic'}">
+        <div class="col-md-4" *ngFor="let requst of finishedRequests">
+
+          <div class="card">
+            <h5 class="card-header" *ngIf="lang=='english'"><strong class="d-inline-block mb-2 text-primary" >Client Total Rate {{requst.totalRate.toFixed(1)}} <i class="fas fa-star"></i></strong></h5>
+            <h5 class="card-header" *ngIf="lang=='arabic'"><strong class="d-inline-block mb-2 text-primary" >مجموع تقييمات العميل {{requst.totalRate.toFixed(1)}} <i class="fas fa-star"></i></strong></h5>
+
+            <agm-map class="card-img-top" *ngIf="requst.xCordinate && requst.yCordinate" [latitude]="requst.xCordinate" [longitude]="yCordinate" [zoom]="15">
+              <agm-marker [latitude]="requst.xCordinate" [longitude]="yCordinate"></agm-marker>
+            </agm-map>
+            
+            <div class="card-body">
+              <h5 class="card-title" *ngIf="lang=='english'"><strong class="d-inline-block mb-2 text-primary">Client Name <i class="fas fa-user-cog"></i> :</strong> {{ requst.name }} </h5>
+              <p class="card-text" *ngIf="lang=='english'"><strong class="d-inline-block mb-2 text-primary">Client Contact <i class="fas fa-phone-volume"></i> :</strong> {{ requst.mobileNumber }}</p>
+
+              <p class="card-text" *ngIf="lang=='english'"><strong class="d-inline-block mb-2 text-primary">Client Address <i class="fas fa-map"></i> :</strong> {{ requst.address }}</p>
+
+              <a class="btn btn-info" style="color: #fff;" *ngIf="lang=='english'">View Profile</a>
+            
+              <a href="#" class="btn btn-success"  data-toggle="modal" data-target="#exampleModal" (click)="getRequestID(requst.id, requst.client_id)" *ngIf="lang=='english'">Rate</a>
+
+
+
+
+
+              <h5 class="card-title" *ngIf="lang=='arabic'"><strong class="d-inline-block mb-2 text-primary">اسم العميل <i class="fas fa-user-cog"></i> :</strong> {{ requst.name }} </h5>
+              <p class="card-text" *ngIf="lang=='arabic'"><strong class="d-inline-block mb-2 text-primary">رقم العميل <i class="fas fa-phone-volume"></i> :</strong> {{ requst.mobileNumber }}</p>
+
+              <p class="card-text" *ngIf="lang=='arabic'"><strong class="d-inline-block mb-2 text-primary">المدينه <i class="fas fa-map"></i> :</strong> {{ requst.address }}</p>
+
+              <a class="btn btn-info" style="color: #fff;" *ngIf="lang=='arabic'">الصفحه الشخصيه</a>
+            
+              <a href="#" class="btn btn-success"  data-toggle="modal" data-target="#exampleModal" (click)="getRequestID(requst.id, requst.client_id)" *ngIf="lang=='arabic'">تقييم</a>
+
+
+            </div>
+        
+          </div>
+
+        </div>
+      </div>
+
+
+
+       <!-- Modal -->
+       <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel" *ngIf="lang=='english'">Rate and Review Client</h5>
+              <h5 class="modal-title" id="exampleModalLabel" *ngIf="lang=='arabic'">تقييم و مراجعه العميل</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="rateStar mb-2 text-primary" style="display: block;" *ngIf="!comment">
+                  <i class="fas fa-star" (click)="rateClient(5)"></i>
+                  <i class="fas fa-star" (click)="rateClient(4)"></i>
+                  <i class="fas fa-star" (click)="rateClient(3)"></i>
+                  <i class="fas fa-star" (click)="rateClient(2)"></i>
+                  <i class="fas fa-star" (click)="rateClient(1)"></i>
+                </div>
+
+                <div class="form-group" *ngIf="comment">
+                  <label for="exampleFormControlTextarea1" *ngIf="lang=='english'">Review Client</label>
+                  <label for="exampleFormControlTextarea1" *ngIf="lang=='arabic'">مراجعه العميل</label>
+                  <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Comment Description" rows="3" name="review" [(ngModel)]="review" *ngIf="lang=='english'"></textarea>
+                  <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="كتابه تعليق" rows="3" name="review" [(ngModel)]="review" *ngIf="lang=='arabic'"></textarea>
+                  <ul>
+                    <li *ngFor='let error of commentError'> *{{ error }} </li>
+                  </ul>
+                </div>
+
+                <div class="modal-footer" *ngIf="comment">
+                  <button type="button" class="btn btn-secondary" (click)="skipReload()" *ngIf="lang=='english'">Skip</button>
+                  <button type="button" class="btn btn-primary" (click)="addComment()" *ngIf="lang=='english'">Send</button>
+
+                  <button type="button" class="btn btn-secondary" (click)="skipReload()" *ngIf="lang=='arabic'">تخطي</button>
+                  <button type="button" class="btn btn-primary" (click)="addComment()" *ngIf="lang=='arabic'">ارسال</button>
+                </div>
+                
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+</div>
+
+
+
+
+
+
+
+</div>
+
+
+
+<app-footer></app-footer>

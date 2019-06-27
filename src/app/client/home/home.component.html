@@ -1,0 +1,87 @@
+<app-navbar></app-navbar>
+
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        
+        <div class="content" [ngStyle]="{'background': 'url(' + slider3 + ')'}" style="background-size: cover !important">
+            <div class="container" [ngClass]="{'direction': lang=='arabic'}">
+                <h2 *ngIf="lang=='english'">GPS Feature</h2>
+                <p *ngIf="lang=='english'">Request the service according to the nearest worker to your location.</p>
+
+                <h2 *ngIf="lang=='arabic'">خاصيه تحديد المواقع</h2>
+                <p *ngIf="lang=='arabic'">اطلب العامل الذي تريد بنائا علي خاصيه تحديد المواقع جي بي اس</p>
+            </div>
+        </div>
+  
+      </div>
+      <div class="carousel-item">
+
+        <div class="content" [ngStyle]="{'background': 'url(' + slider4 + ')'}">
+            <div class="container" [ngClass]="{'direction': lang=='arabic'}">
+                <h2 *ngIf="lang=='english'">Easy To Use</h2>
+                <p *ngIf="lang=='english'">Request the service in simple steps</p>
+
+                <h2 *ngIf="lang=='arabic'">سهوله في الاستخدام</h2>
+                <p *ngIf="lang=='arabic'">اطلب العامل في ثلاث خطوات فقط</p>
+              
+            </div>
+        </div>
+
+      </div>
+      <div class="carousel-item">
+        
+          <div class="content" [ngStyle]="{'background': 'url(' + slider2 + ')'}">
+              <div class="container" [ngClass]="{'direction': lang=='arabic'}">
+                  <h2 *ngIf="lang=='english'">Rating System</h2>
+                  <p *ngIf="lang=='english'">Choose workers based on their portfolio and rate.</p>
+
+                  <h2 *ngIf="lang=='arabic'">نظام كامل لتقيم المستخدمين</h2>
+                  <p *ngIf="lang=='arabic'">اختار العامل بنائا علي تقيم و مراجعات العملاء الاخرين</p>
+              </div>
+          </div>
+
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+</div>
+
+<app-about></app-about>
+
+<app-services></app-services>
+
+<app-why-brngi></app-why-brngi>
+
+<div class="bePartner">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-5">
+        <h2 *ngIf="lang=='english'">Be Partner With Brngi</h2>
+        <span *ngIf="lang=='english'">Work as a freelancer in your carrier</span>
+        <h2 *ngIf="lang=='arabic'">انظم الي عائله برنجي</h2>
+        <span *ngIf="lang=='arabic'">اعمل في مجالك و زود دخلك</span>
+      </div>
+      <div class="col-md-4">
+        <button class="btn btn-primary earnMoneyButton" [routerLink]="['/freelancer-register']" *ngIf="lang=='english'">Earn Money</button>
+
+        <button class="btn btn-primary earnMoneyButton" [routerLink]="['/freelancer-register']" *ngIf="lang=='arabic'">سجل الان</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

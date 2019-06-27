@@ -1,0 +1,40 @@
+<div class="services">
+  <div class="container">
+    <h2 class="text-center" *ngIf="lang=='english'">Our Services</h2>
+    <h2 class="text-center" *ngIf="lang=='arabic'">خدماتنا</h2>
+    <div *ngFor='let serv of services'>
+      <div class="row"  *ngIf="serv.id%2 != 0">
+        <div class="col-md-1"></div>
+        <div class="col-md-2">
+          <img src="http://127.0.0.1:8000/serviceIcons/{{serv.serviceIcon}}">
+        </div>
+        <div class="col-md-6">
+          <div class="content">
+              <h3 *ngIf="lang=='english'">{{ serv.name }}</h3>
+              <p *ngIf="lang=='english'">{{ serv.description }}</p> 
+              
+              <h3 *ngIf="lang=='arabic'">{{ serv.nameArabic }}</h3>
+              <p *ngIf="lang=='arabic'">{{ serv.descriptionArabic }}</p>  
+          </div>
+        </div>
+      </div>
+
+      <div class="row" style="direction: rtl;"  *ngIf="serv.id%2 == 0">
+          <div class="col-md-1"></div>
+          <div class="col-md-2">
+            <img src="http://127.0.0.1:8000/serviceIcons/{{serv.serviceIcon}}">
+          </div>
+          <div class="col-md-6">
+            <div class="content" style="text-align: right; padding-right: 40px;">
+                <h3 *ngIf="lang=='english'">{{ serv.name }}</h3>
+                <p *ngIf="lang=='english'">{{ serv.description }}</p> 
+
+                <h3 *ngIf="lang=='arabic'">{{ serv.nameArabic }}</h3>
+              <p *ngIf="lang=='arabic'">{{ serv.descriptionArabic }}</p>   
+            </div>
+          </div>
+        </div>
+      </div>
+
+  </div>
+</div>

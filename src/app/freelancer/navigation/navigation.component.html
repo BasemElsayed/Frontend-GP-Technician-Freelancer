@@ -1,0 +1,7 @@
+<app-navbar></app-navbar>
+
+
+<agm-map style="height: 91vh;" [latitude]="latFreelancer" [longitude]="lngFreelancer" [zoom]="12">
+  <agm-marker [latitude]="latClient" [longitude]="lngClient" [label]="lab1"></agm-marker>
+  <agm-marker [latitude]="latFreelancer" [longitude]="lngFreelancer" [label]="lab2"></agm-marker>
+</agm-map>

@@ -1,0 +1,33 @@
+<app-admin-navbar></app-admin-navbar>
+
+<div class="adminHome">
+  <div class="container">
+      <div class="space"></div>
+      <table class="table table-hover text-center">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Cateogry</th>
+              <th scope="col">Worker Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Mobile Number</th>
+              <th scope="col">Number Of Jobs Done</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let worker of freelancers; let i=index">
+              <th scope="row">{{ i+1 }}</th>
+              <td>{{ worker.jobTitle }}</td>
+              <td>{{ worker.name }}</td>
+              <td>{{ worker.email }}</td>
+              <td>{{ worker.mobileNumber }}</td>
+              <td>{{ worker.numberOfJobsDone }}</td>
+              <td *ngIf="worker.allowedByAdmin == 0"> <button class="btn btn-success" (click)="approve(worker.id)">Approve</button> </td>
+              <td *ngIf="worker.allowedByAdmin == 1"> <button class="btn btn-danger" (click)="block(worker.id)">Block</button> </td>
+            </tr>
+          </tbody>
+        </table>
+
+  </div>
+</div>

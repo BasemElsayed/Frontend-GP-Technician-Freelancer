@@ -1,0 +1,89 @@
+<div class="login signUp">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4" style="margin: 0; padding: 0">
+          <div class="img" [ngStyle]="{'background': 'url(' + signUpPhoto + ')'}">
+              <h3 *ngIf="lang=='english'">One of us?</h3>
+              <p *ngIf="lang=='english'">If you already has an account, just sign in. We've missed you</p>
+              <h3 *ngIf="lang=='arabic'">مشترك؟</h3>
+              <p *ngIf="lang=='arabic'">اذا كان لديك حساب فسجل الدخول الان</p>
+              <button type="submit" class="btn signup-btn" [routerLink]="['/login']" *ngIf="lang=='english'">Login</button>
+              <button type="submit" class="btn signup-btn" [routerLink]="['/login']" *ngIf="lang=='arabic'">تسجيل الدخول</button>
+          </div>
+        </div>
+        <div class="col-md-8" style="margin: 0; padding: 0;">
+          <form>
+            <h2 *ngIf="lang=='english'">Start Your Journey,</h2>
+            <h2 *ngIf="lang=='arabic'">سجل معانا الان</h2>
+            <div class="row">
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Name" name="name" [(ngModel)]="name" *ngIf="lang=='english'">
+                  <input type="text" class="form-control direction" placeholder="اسم المستخدم" name="name" [(ngModel)]="name" *ngIf="lang=='arabic'">
+                  <ul>
+                    <li *ngFor='let error of errorName'> *{{ error }} </li>
+                  </ul>
+                </div>
+                <div class="form-group">
+                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email" name="email" [(ngModel)]="email" *ngIf="lang=='english'">
+                  <input type="email" class="form-control direction" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="الايميل" name="email" [(ngModel)]="email" *ngIf="lang=='arabic'">
+                  
+                  <ul>
+                    <li *ngFor='let error of errorEmail'> *{{ error }} </li>
+                  </ul>
+                </div>
+                <div class="form-group">
+                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password" [(ngModel)]="password" *ngIf="lang=='english'">
+                  <input type="password" class="form-control direction" id="exampleInputPassword1" placeholder="كلمه المرور" name="password" [(ngModel)]="password" *ngIf="lang=='arabic'">
+                  <ul>
+                    <li *ngFor='let error of errorPassword'> *{{ error }} </li>
+                  </ul>
+                </div>
+                <div class="form-group">
+                  <label for="inputState" *ngIf="lang=='english'">Address By GPS </label>
+                  <label for="inputState" *ngIf="lang=='arabic'">تحديد الموقع </label>  <strong *ngIf="latitude && longitude" style="margin-left: 5px" class="text-success"><i class="far fa-check-circle"></i></strong>
+                  <button type="button" class="btn btn-info" (click)="setCurrentLocation()" *ngIf="lang=='english'">Allow</button> 
+                  <button type="button" class="btn btn-info" (click)="setCurrentLocation()" *ngIf="lang=='arabic'">السماح بتحديد الموقع</button> 
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input type="password" class="form-control" placeholder="Confirm Password" name="confirmPassword" [(ngModel)]="confirmPassword" *ngIf="lang=='english'">
+                  <input type="password" class="form-control direction" placeholder="اعاده كلمه المرور" name="confirmPassword" [(ngModel)]="confirmPassword" *ngIf="lang=='arabic'">
+                  <ul>
+                    <li *ngFor='let error of errorCPassword'> *{{ error }} </li>
+                  </ul>
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Mobile Number" name="mobileNumber" [(ngModel)]="mobileNumber" *ngIf="lang=='english'">
+                  <input type="text" class="form-control direction" placeholder="رقم الموبيل" name="mobileNumber" [(ngModel)]="mobileNumber" *ngIf="lang=='arabic'">
+                  <ul>
+                    <li *ngFor='let error of errorPhone'> *{{ error }} </li>
+                  </ul>
+                </div>
+                <div class="form-group">
+                  <label for="inputState" *ngIf="lang=='english'">Address By Government</label>
+                  <label for="inputState" *ngIf="lang=='arabic'" style="text-align: right; display: block; margin-right: 20px;">المدينه</label>
+                  <select id="inputState" class="form-control" name="addressBySelect" [(ngModel)]="addressBySelect">
+                    <option *ngFor="let region of regions" value="{{ region.name }}">{{ region.name }}</option>
+                  </select>
+                  <ul>
+                    <li *ngFor='let error of errorAddress'> *{{ error }} </li>
+                  </ul>
+                </div>
+
+              </div>
+
+             </div>
+            <button type="submit" class="btn btn-primary" (click)="register()" *ngIf="lang=='english'">Sign up</button>
+            <button type="submit" class="btn btn-primary" (click)="register()" *ngIf="lang=='arabic'">التسجيل</button>
+          </form>
+        </div>
+        
+        
+      </div>
+    </div>
+  </div>
+ 

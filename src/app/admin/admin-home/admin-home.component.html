@@ -1,0 +1,21 @@
+<app-admin-navbar></app-admin-navbar>
+
+<div class="adminHome">
+  <div class="container">
+      <h3>Some statistics about brngi</h3>
+
+      <div class="row">  
+
+          <div class="col-md-4 animation text-center" *ngFor="let stat of statistics">
+              <img src="http://127.0.0.1:8000/serviceIcons/{{ stat.serviceIcon }}">
+              <div class="content"> 
+                  <h4>{{ stat.numberOfTotalJobsDone }}</h4>
+                  <span>Jobs done at {{ stat.name }} category</span>
+              </div>
+          </div>
+          
+
+      </div>
+
+  </div>
+</div>

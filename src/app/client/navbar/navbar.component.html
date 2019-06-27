@@ -1,0 +1,71 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+  <div class="container">
+    <a class="navbar-brand hvr-wobble-top" href="#"><img src="src\assets\images\logo.png"><span *ngIf="lang=='english'">Brngi</span><span *ngIf="lang=='arabic'">برنجي</span></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item hvr-underline-from-left" *ngIf="typeOfUser==0">
+          <a class="nav-link" [routerLink]="['/home']" *ngIf="lang=='english'">Home</a>
+          <a class="nav-link" [routerLink]="['/home']" *ngIf="lang=='arabic'">الصفحه الرئيسيه</a>
+        </li>
+        
+        <li class="nav-item hvr-underline-from-left" *ngIf="typeOfUser==1">
+          <a class="nav-link" [routerLink]="['/client-home']" *ngIf="lang=='english'">Home</a>
+          <a class="nav-link" [routerLink]="['/client-home']" *ngIf="lang=='arabic'">الصفحه الرئيسيه</a>
+        </li>
+        <li class="nav-item hvr-underline-from-left" *ngIf="typeOfUser==1">
+          <a class="nav-link" [routerLink]="['/client-requests']" *ngIf="lang=='english'">Requests</a>
+          <a class="nav-link" [routerLink]="['/client-requests']" *ngIf="lang=='arabic'">الطلبات</a>
+        </li>
+        
+
+        <li class="nav-item hvr-underline-from-left" *ngIf="typeOfUser==2">
+          <a class="nav-link" [routerLink]="['/freelancer-home']" *ngIf="lang=='english'">Home</a>
+          <a class="nav-link" [routerLink]="['/freelancer-home']" *ngIf="lang=='arabic'">الصفحه الرئيسيه</a>
+        </li>
+
+        <li class="nav-item hvr-underline-from-left" *ngIf="typeOfUser==2">
+          <a class="nav-link" [routerLink]="['/portfolio']" *ngIf="lang=='english'">Portfolio</a>
+          <a class="nav-link" [routerLink]="['/portfolio']" *ngIf="lang=='arabic'">سابقه الاعمال</a>
+        </li>
+
+        <li class="nav-item hvr-underline-from-left" *ngIf="typeOfUser==0">
+          <a class="nav-link" [routerLink]="['/login']" *ngIf="lang=='english'">Login</a>
+          <a class="nav-link" [routerLink]="['/login']" *ngIf="lang=='arabic'">تسجيل الدخول</a>
+        </li>
+        
+        <li class="nav-item dropdown .navbar-light .navbar-nav .nav-item">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" *ngIf="lang=='english'">
+            Settings
+          </a>
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" *ngIf="lang=='arabic'">
+              الاعدادات
+            </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" (click)="langEnglish()" *ngIf="lang=='english'">English</a>
+              <a class="dropdown-item" (click)="langArabic()" *ngIf="lang=='english'">Arabic</a>
+              <a class="dropdown-item" (click)="langEnglish()" *ngIf="lang=='arabic'">الانجليزيه</a>
+              <a class="dropdown-item" (click)="langArabic()" *ngIf="lang=='arabic'">العربيه</a>
+
+            <a class="dropdown-item" [routerLink]="['/client-profile']" *ngIf="typeOfUser==1 && lang=='english'">My Profile <i class="fas fa-user-edit"></i></a>
+            <a class="dropdown-item" [routerLink]="['/freelancer-profile']" *ngIf="typeOfUser==2 && lang=='english'">My Profile <i class="fas fa-user-edit"></i></a>
+
+            <a class="dropdown-item" [routerLink]="['/client-profile']" *ngIf="typeOfUser==1 && lang=='arabic'">الصفحه الشخصيه <i class="fas fa-user-edit"></i></a>
+            <a class="dropdown-item" [routerLink]="['/freelancer-profile']" *ngIf="typeOfUser==2 && lang=='arabic'">الصفحه الشخصيه <i class="fas fa-user-edit"></i></a>
+
+
+            <div class="dropdown-divider" *ngIf="typeOfUser==1 || typeOfUser==2"></div>
+            <a class="dropdown-item" (click)="logout()" *ngIf="(typeOfUser==1 || typeOfUser==2) && lang=='english'">Logout <i class="fas fa-sign-out-alt"></i></a>
+
+            <a class="dropdown-item" (click)="logout()" *ngIf="(typeOfUser==1 || typeOfUser==2) && lang=='arabic'">تسجيل الخروج <i class="fas fa-sign-out-alt"></i></a>
+
+          </div>
+        </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,35 @@
+<app-admin-navbar></app-admin-navbar>
+
+<div class="adminRegions">
+  <div class="container">
+    <div class="space"></div>
+    <form class="form-inline">
+        <div class="form-group mx-sm-3 mb-2">
+          <label for="inputPassword2" class="sr-only">Region Name: </label>
+          <input type="text" class="form-control" placeholder="Region Name" name="regionName" [(ngModel)]="regionName">
+          <ul class="eror">
+            <li *ngFor='let error of nameError'> *{{ error }} </li>
+          </ul>
+        </div>
+        <button type="submit" class="btn btn-primary mb-2" (click)="addRegion()">Add Region</button>
+      </form>
+
+      <div class="space"></div>
+
+
+      <div class="row">
+        
+        <div class="col-md-2" *ngFor="let region of regions">
+            <div class="card">
+              <div class="card-header">
+                  {{ region.name }}
+                </div>
+              <div class="card-body">
+                <button class="btn btn-danger" (click)="deleteRegion(region.id)">Delete</button>
+              </div>
+            </div>
+        </div>
+
+      </div>
+  </div>
+</div>

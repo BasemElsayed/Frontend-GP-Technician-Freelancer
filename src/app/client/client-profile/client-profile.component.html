@@ -1,0 +1,148 @@
+<app-navbar></app-navbar>
+
+<div class="clientProfile">
+
+  
+<div class="container">
+  <div class="py-5 text-center">
+    <img class="d-block mx-auto mb-4" src="http://127.0.0.1:8000/clientImages/{{ personalImage }}" alt="" width="250" height="250">
+      <div class="form-group" style="margin: 0px auto; display: inline-block;">
+        <input type="file" class="form-control-file" (change)="onFileChange($event)" id="exampleFormControlFile1" style="margin-left: 80px;">
+      </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4 order-md-2 mb-4">
+      <ul class="list-group mb-3">
+        <li class="list-group-item d-flex justify-content-between lh-condensed">
+          <div>
+            <h6 class="my-0">Number Of Jobs Done</h6>
+          </div>
+          <span class="text-muted">{{ numberOfJobsDone }}</span>
+        </li>
+
+        <li class="list-group-item d-flex justify-content-between bg-light">
+          <div class="text-success">
+            <h6 class="my-0">Rate</h6>
+          </div>
+          <span class="text-success">{{ totalRate.toFixed(1) }}</span>
+        </li>
+      </ul>
+
+
+      <hr class="mb-4">
+
+
+      <div class="row">
+          <div class="col-md-5 mb-3">
+            <label for="country">Country</label>
+            <select class="custom-select d-block w-100" name="address" [(ngModel)]="address">
+              <option *ngFor="let region of regions" value="{{ region.name }}">{{ region.name }}</option>
+            </select>
+          </div>
+
+        </div>
+
+        <hr class="mb-4">
+
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="cc-name">Latitude</label>
+          <input type="text" class="form-control" name="xCordinate" [(ngModel)]="xCordinate">
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="cc-number">Longitude</label>
+          <input type="text" class="form-control" name="yCordinate" [(ngModel)]="yCordinate">
+        </div>
+      </div>
+      <div class="form-group">
+        <button type="button" class="btn btn-secondary" (click)="setCurrentLocation()">Allow GPS</button>
+      </div>
+
+
+    </div>
+    <div class="col-md-8 order-md-1">
+      <h4 class="mb-3">Personal Information</h4>
+      <form class="needs-validation" novalidate="">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="firstName">Name</label>
+            <input type="text" class="form-control" name="name" [(ngModel)]="name">
+            <ul>
+              <li *ngFor='let error of errorName' class="errors"> *{{ error }} </li>
+            </ul>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="lastName">Mobile Number</label>
+            <input type="text" class="form-control" name="mobileNumber" [(ngModel)]="mobileNumber">
+            <ul>
+              <li *ngFor='let error of errorPhone' class="errors"> *{{ error }} </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" name="email" [(ngModel)]="email">
+          <ul>
+            <li *ngFor='let error of errorEmail' class="errors"> *{{ error }} </li>
+          </ul>
+        </div>
+
+        <div class="mb-3">
+          <label for="address">Password</label>
+          <input type="password" class="form-control" name="password" [(ngModel)]="password">
+          <ul>
+            <li *ngFor='let error of errorPassword' class="errors"> *{{ error }} </li>
+          </ul>
+        </div>
+
+        <div class="mb-3">
+          <label for="address">Confirm Password</label>
+          <input type="password" class="form-control" name="c_password" [(ngModel)]="c_password">
+          <ul>
+            <li *ngFor='let error of errorCPassword' class="errors"> *{{ error }} </li>
+          </ul>
+        </div>
+
+
+        <hr class="mb-4">
+        <button class="btn btn-primary btn-lg btn-block" type="submit" (click)="editProfile()">Save Edits</button>
+      </form>
+    </div>
+  </div>
+
+
+  <hr class="mb-4">
+
+  <div class="card">
+      <div class="card-body">
+        <h3>Reviews</h3>
+          <div class="row" *ngFor="let comment of comments">
+              <div class="col-md-1">
+                  <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid"/>
+              </div>
+              <div class="col-md-8">
+                  <p>
+                    <strong>{{ comment.name }}</strong>
+                 </p>
+                 <div class="clearfix"></div>
+                  <p>{{ comment.description }}</p>
+              </div>
+          </div>
+          <p class="empty" *ngIf="empty">There is nothing to show.</p>
+
+
+      </div>
+  </div>
+  
+
+</div>
+
+
+</div>
+
+
+<div class="spaceFooter"></div>
+<app-footer></app-footer>

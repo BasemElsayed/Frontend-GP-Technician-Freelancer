@@ -1,0 +1,256 @@
+<app-navbar></app-navbar>
+
+<div class="clientRequests">
+  <div class="container" *ngIf="allowedToRequest==1">
+
+    <div class="space"></div>
+      <div class="card-header" [ngClass]="{'direction': lang=='arabic'}">
+          <ul class="nav nav-tabs card-header-tabs">
+            <li class="nav-item">
+              <a class="nav-link" [ngClass]="{'active': searchfirst==2}" (click)="getFinishedRequests()" *ngIf="lang=='english'">Finished Requests</a>
+              <a class="nav-link" [ngClass]="{'active': searchfirst==2}" (click)="getFinishedRequests()" *ngIf="lang=='arabic'">الطلبات المكتمله</a>
+
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [ngClass]="{'active': searchfirst==1}" (click)="getUnfinishedRequests()" *ngIf="lang=='english'">Unfinished Requests</a>
+              <a class="nav-link" [ngClass]="{'active': searchfirst==1}" (click)="getUnfinishedRequests()" *ngIf="lang=='arabic'">الطلبات غير المكتمله</a>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link" [ngClass]="{'active': searchfirst==0}" (click)="getCancelledRequests()" *ngIf="lang=='english'">Refused Requests</a>
+              <a class="nav-link" [ngClass]="{'active': searchfirst==0}" (click)="getCancelledRequests()" *ngIf="lang=='arabic'">الطلبات المرفوضه</a>
+            </li>
+              
+            <li class="nav-item">
+              <a class="nav-link" [ngClass]="{'active': searchfirst==3}" (click)="getWaitingRequests()" *ngIf="lang=='english'">Waiting Requests</a>
+              <a class="nav-link" [ngClass]="{'active': searchfirst==3}" (click)="getWaitingRequests()" *ngIf="lang=='arabic'">الطلبات قيد الانتظار</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="loadingContent" *ngIf="!requstsLength">
+          <div class="loading">
+            <div class="loading-bar">
+              <span class="bar-animation"></span>
+            </div>
+          </div>
+        </div>
+        
+        <p class="empty" *ngIf="empty && lang=='english'">There is nothing to show.</p>
+        <p class="empty" *ngIf="empty && lang=='arabic'">لا يوجد شئ لعرضه</p>
+
+
+        <div class="row" [ngClass]="{'direction': lang=='arabic'}">
+          <div class="col-md-4" *ngFor="let requst of finishedRequests">
+
+            <div class="card">
+              <h5 class="card-header" *ngIf="lang=='english'">{{ requst.jobTitle }}</h5>
+              <h5 class="card-header" *ngIf="lang=='arabic'">{{ requst.nameArabic }}</h5>
+              <img class="card-img-top" src="http://127.0.0.1:8000/serviceIcons/{{ requst.serviceIcon }}" alt="Card image cap" style="width: 200px; height: 180px;">
+              <div class="card-body">
+                <h5 class="card-title" *ngIf="lang=='english'"><strong class="d-inline-block mb-2 text-primary">Worker Name <i class="fas fa-user-cog"></i> :</strong> {{ requst.name }} </h5>
+
+                <h5 class="card-title" *ngIf="lang=='arabic'"><strong class="d-inline-block mb-2 text-primary">اسم العامل <i class="fas fa-user-cog"></i> :</strong> {{ requst.name }} </h5>
+
+
+                <p class="card-text" *ngIf="lang=='english'"><strong class="d-inline-block mb-2 text-primary">Worker Contact <i class="fas fa-phone-volume"></i> :</strong> {{ requst.mobileNumber }}</p>
+                
+                <p class="card-text" *ngIf="lang=='english'"><strong class="d-inline-block mb-2 text-primary">Worker Address <i class="fas fa-map"></i> :</strong> {{ requst.address }}</p>
+
+                <p class="card-text" *ngIf="lang=='arabic'"><strong class="d-inline-block mb-2 text-primary">رقم العامل <i class="fas fa-phone-volume"></i> :</strong> {{ requst.mobileNumber }}</p>
+                
+                <p class="card-text" *ngIf="lang=='arabic'"><strong class="d-inline-block mb-2 text-primary">المدينه <i class="fas fa-map"></i> :</strong> {{ requst.address }}</p>
+
+
+                <strong class="d-inline-block mb-2 text-primary" *ngIf="requst.rate != 0">{{ requst.rate }} <i class="fas fa-star"></i></strong>
+                <a href="#" class="btn btn-success"  data-toggle="modal" data-target="#exampleModal" *ngIf="requst.rate == 0 && searchfirst==2 && lang=='english'" (click)="getRequestID(requst.id, requst.freelancer_id)">Rate</a>
+
+                <a href="#" class="btn btn-success"  data-toggle="modal" data-target="#exampleModal" *ngIf="requst.rate == 0 && searchfirst==2 && lang=='arabic'" (click)="getRequestID(requst.id, requst.freelancer_id)">تقييم</a>
+
+
+                <a class="btn btn-danger" *ngIf="searchfirst==3 && lang=='english'" (click)="cancelRequest(requst.id)">Cancel</a>
+
+                <a class="btn btn-danger" *ngIf="searchfirst==3 && lang=='arabic'" (click)="cancelRequest(requst.id)">الغاء الطلب</a>
+
+
+                <div class="alert alert-danger" role="alert" *ngIf="searchfirst == 0 && lang=='english'">
+                  Sorry <i class="far fa-frown-open"></i>, I can`t accept your request immediately.
+                </div>
+
+                <div class="alert alert-danger" role="alert" *ngIf="searchfirst == 0 && lang=='arabic'">
+                   <i class="far fa-frown-open"></i>, انا مشغول حاليا
+                  </div>
+
+
+                <div class="alert alert-info" role="alert" *ngIf="searchfirst == 1 && lang=='english'">
+                  Contact with you immediately <i class="far fa-grin-beam"></i>
+                </div>
+
+                <div class="alert alert-info" role="alert" *ngIf="searchfirst == 1 && lang=='arabic'">
+                    هتصل بيك حالا <i class="far fa-grin-beam"></i>
+                  </div>
+
+              </div>
+          
+            </div>
+                  
+           
+              
+          </div>
+        </div>
+
+
+
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" [ngClass]="{'direction': lang=='arabic'}">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel" *ngIf="lang=='english'">Rate and Review Worker</h5>
+                <h5 class="modal-title" id="exampleModalLabel" *ngIf="lang=='arabic'">تقييم و مراجعه العامل</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+
+                  <div class="rateStar mb-2 text-primary" style="display: block;" *ngIf="!comment">
+                    <i class="fas fa-star" (click)="rateWorker(5)"></i>
+                    <i class="fas fa-star" (click)="rateWorker(4)"></i>
+                    <i class="fas fa-star" (click)="rateWorker(3)"></i>
+                    <i class="fas fa-star" (click)="rateWorker(2)"></i>
+                    <i class="fas fa-star" (click)="rateWorker(1)"></i>
+                  </div>
+
+                  <div class="form-group" *ngIf="comment">
+                    <label for="exampleFormControlTextarea1" *ngIf="lang=='english'">Review Worker</label>
+                    <label for="exampleFormControlTextarea1" *ngIf="lang=='arabic'">مراجعه العامل</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Comment Description" rows="3" name="review" [(ngModel)]="review" *ngIf="lang=='english'"></textarea>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="كتابه تعليق" rows="3" name="review" [(ngModel)]="review" *ngIf="lang=='arabic'"></textarea>
+                    <ul>
+                      <li *ngFor='let error of commentError'> *{{ error }} </li>
+                    </ul>
+                  </div>
+
+                  <div class="modal-footer" *ngIf="comment">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="reloadPage()" *ngIf="lang=='english'">Skip</button>
+                    <button type="button" class="btn btn-primary" (click)="addComment()" *ngIf="lang=='english'">Send</button>
+
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="reloadPage()" *ngIf="lang=='arabic'">تخطي</button>
+                    <button type="button" class="btn btn-primary" (click)="addComment()" *ngIf="lang=='arabic'">ارسال</button>
+
+                  </div>
+                  
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+  </div>
+
+
+
+
+
+  <div class="container" *ngIf="allowedToRequest==0">
+
+    <div class="space"></div>
+
+        <div class="loadingContent" *ngIf="!requstsLength">
+          <div class="loading">
+            <div class="loading-bar">
+              <span class="bar-animation"></span>
+            </div>
+          </div>
+        </div>
+        
+        <p class="empty" *ngIf="empty && lang=='english'">There is nothing to show.</p>
+        <p class="empty" *ngIf="empty && lang=='arabic'">لا يوجد شئ لعرضه</p>
+
+
+        <div class="row" [ngClass]="{'direction': lang=='arabic'}">
+          <div class="col-md-4" *ngFor="let requst of finishedRequests">
+
+            <div class="card">
+              <h5 class="card-header">{{ requst.jobTitle }}</h5>
+              <img class="card-img-top" src="http://127.0.0.1:8000/serviceIcons/{{ requst.serviceIcon }}" alt="Card image cap" style="width: 200px; height: 180px;">
+              <div class="card-body">
+                <h5 class="card-title" *ngIf="lang=='english'"><strong class="d-inline-block mb-2 text-primary">Worker Name <i class="fas fa-user-cog"></i> :</strong> {{ requst.name }} </h5>
+                <p class="card-text" *ngIf="lang=='english'"><strong class="d-inline-block mb-2 text-primary">Worker Contact <i class="fas fa-phone-volume"></i> :</strong> {{ requst.mobileNumber }}</p>
+                
+                <p class="card-text" *ngIf="lang=='english'"><strong class="d-inline-block mb-2 text-primary">Worker Address <i class="fas fa-map"></i> :</strong> {{ requst.address }}</p>
+
+
+                <h5 class="card-title" *ngIf="lang=='english'"><strong class="d-inline-block mb-2 text-primary">اسم العامل <i class="fas fa-user-cog"></i> :</strong> {{ requst.name }} </h5>
+                <p class="card-text" *ngIf="lang=='english'"><strong class="d-inline-block mb-2 text-primary">رقم العامل <i class="fas fa-phone-volume"></i> :</strong> {{ requst.mobileNumber }}</p>
+                
+                <p class="card-text" *ngIf="lang=='english'"><strong class="d-inline-block mb-2 text-primary">المدينه <i class="fas fa-map"></i> :</strong> {{ requst.address }}</p>
+
+
+
+                <a href="#" class="btn btn-success"  data-toggle="modal" data-target="#exampleModal" *ngIf="requst.rate == 0 && lang=='english'" (click)="getRequestID(requst.id, requst.freelancer_id)">Rate</a>
+                <a href="#" class="btn btn-success"  data-toggle="modal" data-target="#exampleModal" *ngIf="requst.rate == 0 && lang=='arabic'" (click)="getRequestID(requst.id, requst.freelancer_id)">تقييم</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" [ngClass]="{'direction': lang=='arabic'}">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel" *ngIf="lang=='english'">Rate and Review Worker</h5>
+                <h5 class="modal-title" id="exampleModalLabel" *ngIf="lang=='arabic'">تقييم و مراجعه العامل</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+
+                  <div class="rateStar mb-2 text-primary" style="display: block;" *ngIf="!comment">
+                    <i class="fas fa-star" (click)="rateWorker(5)"></i>
+                    <i class="fas fa-star" (click)="rateWorker(4)"></i>
+                    <i class="fas fa-star" (click)="rateWorker(3)"></i>
+                    <i class="fas fa-star" (click)="rateWorker(2)"></i>
+                    <i class="fas fa-star" (click)="rateWorker(1)"></i>
+                  </div>
+
+                  <div class="form-group" *ngIf="comment">
+                    <label for="exampleFormControlTextarea1" *ngIf="lang=='english'">Review Worker</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Comment Description" rows="3" name="review" [(ngModel)]="review" *ngIf="lang=='english'"></textarea>
+
+                    <label for="exampleFormControlTextarea1" *ngIf="lang=='arabic'">مراجعه العامل</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="كتابه تعليق" rows="3" name="review" [(ngModel)]="review" *ngIf="lang=='arabic'"></textarea>
+
+                    <ul>
+                      <li *ngFor='let error of commentError'> *{{ error }} </li>
+                    </ul>
+                  </div>
+
+                  <div class="modal-footer" *ngIf="comment">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="reloadPage()" *ngIf="lang=='english'">Skip</button>
+                    <button type="button" class="btn btn-primary" (click)="addComment()" *ngIf="lang=='english'">Send</button>
+
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="reloadPage()" *ngIf="lang=='arabic'">تخطي</button>
+                    <button type="button" class="btn btn-primary" (click)="addComment()" *ngIf="lang=='arabic'">ارسال</button>
+                  </div>
+                  
+              </div>
+            </div>
+          </div>
+        </div>
+
+  </div>
+
+
+
+
+
+</div>
+
+<app-footer></app-footer>
